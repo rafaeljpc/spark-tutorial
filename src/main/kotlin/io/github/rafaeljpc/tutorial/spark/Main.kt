@@ -8,19 +8,30 @@ fun main(args: Array<String>) {
     val userDao = UserDao()
 
     path("/users") {
-        get("") { req, resp -> userDao.findAll() }
+        get("") { req, res ->
+            res.type("application/json")
+            userDao.findAll()
+        }
 
-        get("/:id") { req, resp -> userDao.findById(req.params("id").toLong()) }
+        get("/:id") { req, res ->
+            res.type("application/json")
+            userDao.findById(req.params("id").toLong())
+        }
 
-        get("/email/:email") { req, resp -> userDao.findByEmail(req.params("email")) }
+        get("/email/:email") { req, res ->
+            res.type("application/json")
+            userDao.findByEmail(req.params("email"))
+        }
 
-        post("") { req, resp ->
+        post("") { req, res ->
+            res.type("application/json")
             userDao.save(name = req.qp("name"), email = req.qp("email"))
-            resp.status(201)
+            res.status(201)
             "ok"
         }
 
-        patch("/:id") { req, resp ->
+        patch("/:id") { req, res ->
+            res.type("application/json")
             userDao.update(
                 id = req.params("id").toLong(),
                 name = req.qp("name"),

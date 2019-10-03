@@ -20,6 +20,9 @@ application {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("com.sparkjava:spark-core:2.8.+")
+    implementation("org.slf4j:slf4j-simple:1.7.+")
+    implementation("com.google.code.gson:gson:2.8.+")
+    runtime("org.slf4j:slf4j-simple:1.7.+")
 }
 
 tasks.withType<KotlinCompile> {
